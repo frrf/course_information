@@ -26,6 +26,10 @@ const App = () => {
     setBad(bad + 1);
   }
 
+  const all = () => (good+neutral+bad)
+  const average = () => ((good-bad)/all())
+  const positive = () => ((good/all())*100 + ' %')
+
   return (
     <>
       <Section text='give feedback'/>
@@ -36,6 +40,9 @@ const App = () => {
       <Stat text='good' score={good}/>
       <Stat text='neutral' score={neutral}/>
       <Stat text='bad' score={bad}/>
+      <Stat text='all' score={all()}/>
+      <Stat text='average' score={average()}/>
+      <Stat text='positive' score={positive()}/>
     </>
   )
 }
