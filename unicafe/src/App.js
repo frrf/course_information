@@ -8,7 +8,18 @@ const Button = ({handleClick, text}) => (
 
 const Section = ({text}) => (<h4>{text}</h4>)
 
-const Stat = ({text, score}) => (<span>{text} {score}<br/></span>)
+const Statistics = ({text1, score1,text2, score2,text3, score3,text4, score4,text5,score5,text6, score6}) => {
+  return (
+  <>
+    <span>{text1} {score1}<br/></span>
+    <span>{text2} {score2}<br/></span>
+    <span>{text3} {score3}<br/></span>
+    <span>{text4} {score4}<br/></span>
+    <span>{text5} {score5}<br/></span>
+    <span>{text6} {score6}<br/></span>
+  </>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -37,12 +48,14 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text={'Neutral'}/>
       <Button handleClick={handleBadClick} text={'Bad'}/>
       <Section text='statistics'/>
-      <Stat text='good' score={good}/>
-      <Stat text='neutral' score={neutral}/>
-      <Stat text='bad' score={bad}/>
-      <Stat text='all' score={all()}/>
-      <Stat text='average' score={average()}/>
-      <Stat text='positive' score={positive()}/>
+      <Statistics 
+        text1='good' score1={good}
+        text2='neutral' score2={neutral}
+        text3='bad' score3={bad}
+        text4='all' score4={all()}
+        text5='average' score5={average()}
+        text6='positive' score6={positive()}
+      />
     </>
   )
 }
