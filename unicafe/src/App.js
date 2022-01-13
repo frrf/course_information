@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 
-const Button = ({handleClick, text}) => (
-  <button onClick={handleClick}>
-    {text}
-  </button>
-)
-
 const Section = ({text}) => (<h4>{text}</h4>)
 
-const Statistics = ({text1, score1,text2, score2,text3, score3,text4, score4,text5,score5,text6, score6}) => {
-  if (score1 === 0 && score2 === 0 && score3 === 0 && score4 === 0) {
+const Statistics = ({good,neutral,bad}) => {
+  const all = () => (good+neutral+bad)
+  const average = () => ((good-bad)/all())
+  const positive = () => ((good/all())*100 + ' %')
+
+
+  if (good === 0 && neutral === 0 && bad === 0) {
     return (
       <>
         <span>No Feedback given</span>
@@ -18,16 +17,33 @@ const Statistics = ({text1, score1,text2, score2,text3, score3,text4, score4,tex
   } 
   return (
     <>
-      <span>{text1} {score1}<br/></span>
-      <span>{text2} {score2}<br/></span>
-      <span>{text3} {score3}<br/></span>
-      <span>{text4} {score4}<br/></span>
-      <span>{text5} {score5}<br/></span>
-      <span>{text6} {score6}<br/></span>
+      <StatisticLine text='good' value={good}/>
+      <StatisticLine text='neutral' value={neutral}/>
+      <StatisticLine text='bad' value={bad}/>
+      <StatisticLine text='all' value={all()}/>
+      <StatisticLine text='average' value={average()}/>
+      <StatisticLine text='positive' value={positive()}/>
     </>
   )
-  
 }
+
+const StatisticLine = ({text, value}) => (<span>{text} {value}<br/></span>)
+
+const Buttons = ({handleGood,handleNeutral,handleBad}) => {
+  return (
+    <>
+      <Button handleClick={handleGood} text={'Good'}/>
+      <Button handleClick={handleNeutral} text={'Neutral'}/>
+      <Button handleClick={handleBad} text={'Bad'}/>
+    </>
+  )
+}
+
+const Button = ({handleClick, text}) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 
 const App = () => {
   // save clicks of each button to its own state
@@ -45,25 +61,12 @@ const App = () => {
     setBad(bad + 1);
   }
 
-  const all = () => (good+neutral+bad)
-  const average = () => ((good-bad)/all())
-  const positive = () => ((good/all())*100 + ' %')
-
   return (
     <>
       <Section text='give feedback'/>
-      <Button handleClick={handleGoodClick} text={'Good'}/>
-      <Button handleClick={handleNeutralClick} text={'Neutral'}/>
-      <Button handleClick={handleBadClick} text={'Bad'}/>
+      <Buttons handleGood={handleGoodClick} handleNeutral={handleNeutralClick} handleBad={handleBadClick}/>
       <Section text='statistics'/>
-      <Statistics 
-        text1='good' score1={good}
-        text2='neutral' score2={neutral}
-        text3='bad' score3={bad}
-        text4='all' score4={all()}
-        text5='average' score5={average()}
-        text6='positive' score6={positive()}
-      />
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </>
   )
 }
