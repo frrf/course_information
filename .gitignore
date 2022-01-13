@@ -6,6 +6,7 @@
 /part1c/node_modules
 /unicafe/node_modules
 /course_info/node_modules
+/anecdotes/node_modules
 /.pnp
 .pnp.js
 
@@ -17,6 +18,7 @@
 /part1b/build
 /part1c/build
 /unicafe/build
+/anecdotes/build
 /course_info/build
 
 # misc
