@@ -8,6 +8,8 @@
 /part1/course_info/node_modules
 /part1/anecdotes/node_modules
 /part2/course_information/node_modules
+/part2/phonebook/node_modules
+/part2/part2-notes-part2-1/node_modules
 
 /.pnp
 .pnp.js
